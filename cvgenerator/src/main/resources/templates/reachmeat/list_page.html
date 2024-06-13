@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reach Me At</title>
+    <div th:insert="~{fragments/fragments.html:: list_css}"></div>
+</head>
+<body>
+<div class="container">
+    <a th:href="@{~/basic-info}" class="btn btn-Back">
+        <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
+    <a th:href="@{~/}" class="btn btn-secondary">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <a th:href="@{~/reach-me-at/add-reach-me-at/}+${basicInformationId}">
+        <button class="btn btn-primary"> + Reach Me At</button>
+    </a>
+    <br>
+    <div>
+        <h2 th:text="${fullName}"></h2>
+    </div>
+    <a th:href="@{|/reach-me-at/view/${basicInformationId}|}" class="btn btn-outline-success">
+        <i class="fas fa-eye"></i> View
+    </a>
+    <div th:each="reachMeAtDto, i : ${reachMeAtDtoList}" class="info-section">
+        <div class="info-details">
+            <p><span class="info-label">Contact Type:</span><span th:text="${reachMeAtDto.getContactType()}"></span></p>
+            <p><span class="info-section">Detail:</span><span th:text="${reachMeAtDto.getDetails()}"></span></p>
+        </div>
+            <a th:href="@{|/reach-me-at/edit/${reachMeAtDto.getReachMeAtId()}|}" class="btn btn-outline-secondary">
+                <i class="fas fa-user-edit"></i> Edit
+            </a>
+            <a th:href="@{|/reach-me-at/delete/${reachMeAtDto.getReachMeAtId()}|}" class="btn btn-outline-danger"
+               onclick="return confirmDelete()">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+    </div>
+</div>
+<script type="text/javascript">
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this item? This action cannot be undone.");
+    }
+</script>
+</body>
+</html>

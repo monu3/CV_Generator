@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thyemeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Generator</title>
+    <div th:insert="~{fragments/fragments.html:: front_css}"></div>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img src="@{cvlogo.png}" alt="CV Generator Logo" />
+        </div>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a th:href="@{~/contact-us}">Contact Us</a></li>
+        </ul>
+        <div class="cta">
+            <a th:href="@{~/contact-us/list}" class="button"> Inquiries </a>
+            <a th:href="@{~/basic-info}" class="button">Create Your CV</a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Create Your Professional CV</h1>
+    <p>
+        A simple and easy way to build your resume and stand out in the job
+        market.
+    </p>
+    <a th:href="@{~/basic-info}" class="button">Get Started</a>
+</section>
+
+<section id="features" class="features">
+    <h2>Key Features</h2>
+    <div class="feature">
+        <i class="fas fa-file-alt"></i>
+        <h3>Multiple Templates</h3>
+        <p>Choose from a variety of professionally designed templates.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-pencil-alt"></i>
+        <h3>Easy Customization</h3>
+        <p>Customize your CV with ease, change fonts, colors, and layouts.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-download"></i>
+        <h3>Download as PDF</h3>
+        <p>Download your CV as a high-quality PDF document.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-user"></i>
+        <h3>Add Basic Info</h3>
+        <p>
+            Add your personal details such as name, contact information, and a
+            brief summary.
+        </p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Add Education Info</h3>
+        <p>
+            Include details about your educational background, degrees, and
+            achievements.
+        </p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-briefcase"></i>
+        <h3>Add Working Experience</h3>
+        <p>
+            Document your work history, positions held, responsibilities, and
+            accomplishments.
+        </p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-project-diagram"></i>
+        <h3>Add Projects</h3>
+        <p>
+            Showcase your projects, including descriptions, technologies used, and
+            outcomes.
+        </p>
+        <p>Specify the technologies and tools used in your projects, such as programming languages, frameworks, and software.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-address-book"></i>
+        <h3>Add Contacts</h3>
+        <p>
+            Keep a list of contacts, including references or networking contacts.
+        </p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-chart-bar"></i>
+        <h3>Add Skills</h3>
+        <p>Highlight your skills and competencies, including technical, soft, and language skills.</p>
+    </div>
+</section>
+
+<!-- Other sections like "How It Works", "Testimonials", "Pricing", "Contact Us" can be added here -->
+
+<footer>
+    <div class="footer-content">
+        <div class="logo">
+            <img src="cvlogo.png" alt="CV Generator Logo" />
+        </div>
+        <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 CV Generator. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

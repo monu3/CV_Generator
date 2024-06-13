@@ -1,0 +1,192 @@
+body {
+    background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%) !important;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background: transparent;
+}
+.btn {
+    display: inline-block;
+    padding: 1px ;
+    margin: 1px 3px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #28a745;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn.btn-primary {
+    background-color: #3edc75; /* Bootstrap primary color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.btn.btn-primary:hover {
+    background-color: #287c41; /* Darker shade of primary color */
+}
+
+/* Style for the FontAwesome icon inside the button */
+.btn.btn-primary i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+
+.description-container{
+    overflow-wrap: break-word;
+    word-break: break-word;
+    word-wrap: break-word;
+}
+
+.btn-secondary {
+    background-color: #87b8e6;
+    position:absolute;
+    left:10px;
+    top: 10px;
+    width: 40px;
+    height: 30px;
+    font-size: 14px;
+    padding: 2px ;
+}
+.btn-Back {
+    background-color: #87b8e6;
+    position:absolute;
+    left:70px;
+    top: 10px;
+    width: 40px;
+    height: 30px;
+    font-size: 14px;
+    padding: 2px ;
+}
+
+.fas.fa-arrow-left{
+    size: 30px;
+}
+
+.btn-secondary:hover,.btn-Back:hover {
+    background-color: #40a2ed; /* Darker shade of primary color */
+}
+.btn-outline-success {
+    background-color: #fff;
+    color: #ecb96d;
+    border: 2px solid #ecb96d;
+}
+
+.btn-outline-success:hover{
+    background-color: #f4e1c4;
+}
+
+.btn-outline-view {
+    background-color: #fff;
+    color: #76c062;
+    border: 2px solid #76c062;
+}
+.btn-outline-view:hover{
+    background-color: #c8f6d2;
+}
+
+.btn-outline-info {
+    background-color: #fff;
+    color: #17a2b8;
+    border: 2px solid #17a2b8;
+}
+
+.btn-outline-info:hover{
+    background-color:#c7f3fa;
+}
+
+.btn-outline-primary {
+    background-color: #fff;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-outline-primary:hover{
+    background-color: #c5dcf5;
+}
+
+.btn-outline-warning {
+    background-color: #fff;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+}
+
+.btn-outline-warning:hover{
+    background-color: rgb(244, 244, 196);
+}
+
+.btn-outline-secondary {
+    background-color: #fff;
+    color: #6c757d;
+    border: 2px solid #6c757d;
+}
+
+.btn-outline-secondary:hover{
+    background-color: #c9e2f7;
+}
+
+.btn-outline-danger {
+    background-color: #fff;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+}
+
+.btn-outline-danger:hover{
+    background-color: rgb(244, 193, 193);
+}
+.info-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+#image {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.info-section p {
+    margin: 0 0 10px;
+}
+.info-label {
+    font-weight: bold;
+}
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.button-group a {
+    flex: 1;
+    text-align: center;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Skill</title>
+    <div th:insert="~{fragments/fragments.html:: form_CSS}"></div>
+
+</head>
+<body>
+<div class="container">
+    <h3 class="topic">Skills</h3>
+    <br>
+    <a th:href="@{~/skill-info/open-list/}+${skillDto.getBasicInfoId}" class="back-button">
+        <button class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i></button>
+    </a>
+    <form th:action="@{~/skill-info/save}" th:object="${skillDto}" method="POST">
+        <div>
+            <input type="hidden" id="basicInfoId" th:field="*{basicInfoId}"/>
+            <input type="hidden" id="skillId" th:field="*{skillId}"/>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="skillName" class="form-label">Skill Name</label>
+                <input type="text" class="form-control" id="skillName" th:field="*{skillName}" required/>
+                <p class="error-messages" th:text="${errorMap.skillNameError}"></p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Skill Type</label>
+                <select class="form-select" aria-label="Default select" th:field="*{skillType}">
+                    <option disabled th:value="DISABLED">
+                        --select skill type--
+                    </option>
+                    <option
+                            th:each="skillType:${skillType}"
+                            th:value="${skillType}"
+                            th:text="${skillType}"
+                    ></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="skillDescription" class="form-label">Skill Description</label>
+            <textarea
+                    rows="5"
+                    class="form-control"
+                    id="skillDescription"
+                    th:field="*{skillDescription}"
+                    required>
+            </textarea>
+            <p class="error-messages" th:text="${errorMap.skillDescriptionError}"></p>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

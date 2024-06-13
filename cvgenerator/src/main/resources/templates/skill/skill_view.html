@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Information</title>
+    <div th:insert="fragments/fragments.html:: view_css"></div>
+</head>
+<body>
+<div class="container">
+    <div class="btn-container">
+        <a th:href="@{/skill-info/open-list/}+${basicInfoId}">
+            <button class="btn btn-primary">Back</button>
+        </a>
+    </div>
+    <div class="section">
+        <h3>Skills</h3>
+        <div th:each="skill : ${skillDto}" class="data-group">
+            <div>
+                <span class="info-label" style="color: #28a745;" th:text="${skill.getSkillType()}+': '"></span>
+                <span class="info-value" th:text="${skill.getSkillName()}"></span>
+                <span class="info-value" th:text="${skill.getSkillDescription()}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

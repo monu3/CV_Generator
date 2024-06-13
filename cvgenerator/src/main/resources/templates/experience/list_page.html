@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Experience Information</title>
+    <div th:insert="~{fragments/fragments.html:: list_css}"></div>
+</head>
+<body>
+<div class="container">
+        <a th:href="@{~/basic-info}" class="btn btn-Back">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+        <a th:href="@{~/}" class="btn btn-secondary">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a th:href="@{~/experience-info/add-experience-info/}+${basicInformationId}">
+            <button class="btn btn-primary"> + Experience</button>
+        </a>
+    <div>
+        <h2 th:text="${fullName}"></h2>
+    </div>
+
+    <div th:each="experienceDto : ${experienceDtoList}" class="info-section">
+        <div class="info-details">
+        <p><span class="info-label">Company Name:</span> <span th:text="${experienceDto.getCompanyName}"></span></p>
+        <p><span class="info-label">Company Website:</span> <span th:text="${experienceDto.getCompanyWebsite}"></span></p>
+        <p><span class="info-label">Address:</span> <span th:text="${experienceDto.getAddress}"></span></p>
+        <p><span class="info-label">Contact:</span> <span th:text="${experienceDto.getContact}"></span></p>
+        </div>
+            <a th:href="@{~/experience-info/edit/}+${experienceDto.getExperienceId}" class="btn btn-outline-secondary">
+                <i class="fas fa-user-edit"></i> Edit
+            </a>
+            <a th:href="@{~/experience-info/delete/}+${experienceDto.getExperienceId}" onclick="return confirmDelete()" class="btn btn-outline-danger">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+            <a th:href="@{~/projects-info/id/}+${experienceDto.getExperienceId}" class="btn btn-outline-info">
+                <i class="fas fa-briefcase"></i> Projects
+            </a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function confirmDelete() {
+        return confirm("Do you want to delete Experience ?");
+    }
+</script>
+</body>
+</html>

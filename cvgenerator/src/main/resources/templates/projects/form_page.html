@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+    <div th:insert="~{fragments/fragments.html:: form_CSS}"></div>
+<body>
+<div class="container">
+    <h3 class="topic">Projects Information</h3>
+    <br>
+    <a th:href="@{~/projects-info/id/}+${experienceId}" class="back-button">
+        <button class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i></button>
+    </a>
+    <form th:action="@{~/projects-info/save}" th:object="${projectsDto}"
+          method="POST">
+        <div>
+            <input type="hidden" id="experienceId" th:field="*{experienceId}">
+            <input type="hidden" id="projectId" th:field="*{projectId}">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="projectName" class="form-label">Projects Name</label>
+                <input type="text" class="form-control" id="projectName"
+                       th:field="*{projectName}" required>
+                <p class="error-messages" th:text="${errorObject.getProjectNameError}"></p>
+            </div>
+            <div class="form-group">
+                <label for="roleInProject" class="form-label">Role in Project</label>
+                <input type="text" class="form-control" id="roleInProject"
+                       th:field="*{roleInProject}" required>
+                <p class="error-messages" th:text="${errorObject.getRoleInProjectError}"></p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="liveUrlPath" class="form-label">live url(if possible) </label>
+                <input type="text" class="form-control" id="liveUrlPath"
+                       th:field="*{liveUrlPath}">
+                <p class="error-messages" th:text="${errorObject.getLiveUrlPathError}" ></p>
+            </div>
+            <div class="form-group">
+                <label for="techStackUsed" class="form-label">Tech used in this project</label>
+                <input type="text" class="form-control" id="techStackUsed"
+                       th:field="*{techStackUsed}" required>
+                <p class="error-messages" th:text="${errorObject.getTechStackUsedError}" ></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <textarea rows="3" class="form-control" id="description"
+                      th:field="*{description}"> </textarea>
+            <p class="error-messages" th:text="${errorObject.getDescriptionError}"></p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label"> Currently Running </label>
+            <div>
+                <label>
+                    <input type="radio" class="form-check-input" id="isRunningTrue" name="isCurrent"
+                           th:field="*{isRunning}"
+                           th:value="true" required> Yes
+                </label>
+                <label>
+                    <input type="radio" class="form-check-input" id="isRunningFalse" name="isCurrent"
+                           th:field="*{isRunning}"
+                           th:value="false"> No
+                </label>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+</form>
+</div>
+</body>
+</html>

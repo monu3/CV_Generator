@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Experience</title>
+    <div th:insert="~{fragments/fragments.html:: form_CSS}"></div>
+
+</head>
+<body>
+<div class="container">
+    <h3 class="topic">Experience Information</h3>
+    <br>
+    <a th:href="@{~/experience-info/id/}+${experienceDto.getBasicInformationId}" class="back-button">
+        <button class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i></button>
+    </a>
+    <form th:action="@{~/experience-info/save}" th:object="${experienceDto}"
+          method="POST" onsubmit="return validateDates()">
+            <div>
+                <input type="hidden" id="experienceId" th:field="*{experienceId}">
+                <input type="hidden" id="basicInformationId" th:field="*{basicInformationId}">
+            </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="companyName" class="form-label">Company Name</label>
+                <input type="text" class="form-control" id="companyName" th:field="*{companyName}" required>
+                <p class="error-messages" th:text="${errorObject.getCompanyNameError}"></p>
+            </div>
+            <div class="form-group">
+                <label for="companyWebsite" class="form-label">Company Website</label>
+                <input type="text" class="form-control" id="companyWebsite" th:field="*{companyWebsite}" required oninput="updateLink()">
+                <p class="error-messages" th:text="${errorObject.getCompanyWebsiteError}"></p>
+                <p>
+                    <a id="websiteLink" href="#" target="_blank"></a>
+                </p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" th:field="*{address}" required>
+                <p class="error-messages" th:text="${errorObject.getCompanyAddressError}"></p>
+            </div>
+            <div class="form-group">
+                <label for="contact" class="form-label">Contact</label>
+                <input type="number" class="form-control" id="contact" th:field="*{contact}" required>
+                <p class="error-messages" th:text="${errorObject.getCompanyContactError}"></p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label">Currently working?</label>
+                <div>
+                    <label>
+                        <input type="radio" class="form-check-input" id="isCurrentTrue" name="isCurrent"
+                               th:field="*{isCurrent}" th:value="true" onchange="toggleEndDate()"> Yes
+                    </label>
+                    <label>
+                        <input type="radio" class="form-check-input" id="isCurrentFalse" name="isCurrent"
+                               th:field="*{isCurrent}" th:value="false" onchange="toggleEndDate()"> No
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required>
+            </div>
+        </div>
+        <div class="form-row" id="endDateContainer">
+            <div class="form-group">
+                <label for="endDate" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="position" class="form-label">Position</label>
+                <input type="text" class="form-control" id="position" th:field="*{position}" required>
+                <p class="error-messages" th:text="${errorObject.getCompanyNameError}"></p>
+            </div>
+            <div class="form-group">
+                <label for="jobRole" class="form-label">Job Role</label>
+                <textarea rows="2" class="form-control" id="jobRole" th:field="*{jobRole}" required></textarea>
+                <p class="error-messages" th:text="${errorObject.getJobRoleError}"></p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    function toggleEndDate() {
+        const isCurrentTrue = document.getElementById("isCurrentTrue");
+        const endDateField = document.getElementById("endDate");
+        const endDateContainer = document.getElementById("endDateContainer");
+
+        if (isCurrentTrue.checked) {
+            endDateField.disabled = true;
+            endDateField.value = ""; // Clear the value of the end date field
+            endDateContainer.style.display = 'none';
+        } else {
+            endDateField.disabled = false;
+            endDateContainer.style.display = 'block';
+        }
+    }
+
+    // Initialize the state on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        toggleEndDate();
+    });
+
+    function validateDates() {
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+        const today = new Date().toISOString().split('T')[0];
+
+        if (startDate > today) {
+            alert("Start date cannot be in the future.");
+            return false;
+        }
+
+        if (startDate === endDate) {
+            alert("Start date and end date cannot be the same.");
+            return false;
+        }
+
+        if (endDate && endDate > today) {
+            alert("End date cannot be in the future.");
+            return false;
+        }
+
+        if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+            alert("Start date must be before end date.");
+            return false;
+        }
+
+        return true;
+    }
+    function updateLink() {
+        const websiteField = document.getElementById("companyWebsite");
+        const websiteLink = document.getElementById("websiteLink");
+        const url = websiteField.value;
+
+        // Simple check to prepend http:// or https:// if missing
+        if (url && !/^https?:\/\//i.test(url)) {
+            websiteLink.href = 'https://' + url;
+        } else {
+            websiteLink.href = url;
+        }
+
+        if (url) {
+            websiteLink.style.display = 'inline';
+        } else {
+            websiteLink.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>

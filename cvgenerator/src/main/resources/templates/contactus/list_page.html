@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <div th:insert="~{fragments/fragments.html:: list_css}"></div>
+</head>
+<body>
+<div class="container">
+    <a th:href="@{/}" class="btn btn-secondary">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <div>
+        <h2>Inquiries List:</h2>
+    </div>
+    <div th:each="contactUsDto, i : ${contactUsDtoList}" class="info-section">
+        <div class="info-details">
+            <p>
+                <span class="info-label">Name:</span>
+                <span th:text="${contactUsDto.getFirstName()+' '+contactUsDto.getMiddleName()+' '+contactUsDto.getLastName()}"></span>
+            </p>
+            <p>
+                <span class="info-label">Address:</span>
+                <span th:text="${contactUsDto.getAddress()}"></span>
+            </p>
+            <p>
+                <span class="info-label">Email:</span>
+                <span th:text="${contactUsDto.getEmail()}"></span>
+            </p>
+            <p>
+                <span class="info-label">Phone Number:</span>
+                <span th:text="${contactUsDto.getPhoneNumber()}"></span>
+            </p>
+            <p>
+                <span class="info-label">Active:</span>
+                <span th:text="${contactUsDto.getIsActive()}"></span>
+            </p>
+            <form th:action="@{|/contact-us/edit/${contactUsDto.getId}|}" th:object="${contactUsDto}" method="POST">
+<!--                <input type="hidden" id="id" th:field="*{contactUsDto.getId}">-->
+<!--                <input type="hidden" id="firstName" th:field="*{contactUsDto.getFirstName}">-->
+<!--                <input type="hidden" id="middleName" th:field="*{contactUsDto.getMiddleName()}">-->
+<!--                <input type="hidden" id="lastName" th:field="*{contactUsDto.getLastName()}">-->
+<!--                <input type="hidden" id="address" th:field="*{contactUsDto.getAddress}">-->
+<!--                <input type="hidden" id="email" th:field="*{contactUsDto.getEmail}">-->
+<!--                <input type="hidden" id="phoneNumber" th:field="*{contactUsDto.getPhoneNumber}">-->
+                <button type="submit" class="btn btn-primary btn-submit">Settle</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

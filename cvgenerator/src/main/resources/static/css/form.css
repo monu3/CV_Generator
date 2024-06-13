@@ -1,0 +1,140 @@
+/* styles.css */
+.btn.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.btn.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade of primary color */
+}
+
+/* Style for the FontAwesome icon inside the button */
+.btn.btn-primary i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+
+body {
+    background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%) !important;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    background: transparent; /*Match the form background with the page*/
+
+}
+
+.topic {
+    text-align: center;
+    color: #6782e6;
+!important;
+    margin: 50px;
+    font-weight: bold;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+/*button[type="submit"] {*/
+/*    !*display: block;*!*/
+/*    width: 100px;*/
+/*    padding: 10px;*/
+/*    background-color: #007bff;*/
+/*    color: #fff;*/
+/*    border: none;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*    font-size: 16px;*/
+/*}*/
+
+
+.btn-submit {
+    /*display: block;*/
+    width: 100px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 0 0 48%;
+    margin-bottom: 20px;
+}
+
+.form-row#endDateContainer .form-group {
+    flex: 0 0 48%; /* Ensure end date has the same space as start date */
+}
+
+@media (max-width: 768px) {
+    .form-row .form-group {
+        flex: 0 0 100%;
+    }
+}
+
+.form-check-input {
+    margin-top: 0.3rem;
+}
+
+textarea#jobRole, textarea#description, textarea#skillDescription, textarea#background {
+    height: 50px; /* Fixed height for the Job Role field */
+    overflow-y: auto; /* Add scroll if content overflows */
+    resize: none; /* Prevent resizing */
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.error-messages {
+    color: red;
+    font-size: 14px;
+}

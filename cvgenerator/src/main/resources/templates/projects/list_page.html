@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>projects</title>
+    <div th:insert="~{fragments/fragments.html:: list_css}"></div>
+</head>
+<body>
+<div class="container">
+    <a th:href="@{~/experience-info/id/}+${basicInformationId}" class="btn btn-Back">
+        <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
+    <a th:href="@{~/}" class="btn btn-secondary">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <a th:href="@{~/projects-info/add-projects-info/}+${experienceId}">
+        <button class="btn btn-primary"> + Project</button>
+    </a>
+    <div>
+        <h2 th:text="${companyName}"></h2>
+    </div>
+
+    <div th:each="projectsDto : ${projectsDtoList}" class="info-section">
+        <div class="info-details">
+            <p><span class="info-label">Project Name:</span> <span th:text="${projectsDto.getProjectName()}"></span></p>
+            <p><span class="info-label">Role in Project:</span> <span
+                    th:text="${projectsDto.getRoleInProject()}"></span></p>
+            <p><span class="info-label">Live Url:</span> <span th:text="${projectsDto.getLiveUrlPath()}"></span></p>
+            <p><span class="info-label">TechStack Used:</span> <span th:text="${projectsDto.getTechStackUsed()}"></span>
+            </p>
+        </div>
+        <a th:href="@{~/projects-info/edit/}+${projectsDto.getProjectId}" class="btn btn-outline-secondary">
+            <i class="fas fa-user-edit"></i> Edit
+        </a>
+        <a th:href="@{~/projects-info/delete/}+${projectsDto.getProjectId}" onclick="return confirmDelete()"
+           class="btn btn-outline-danger">
+            <i class="fas fa-trash"></i> Delete
+        </a>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function confirmDelete() {
+        return confirm("Do you want to delete project ?");
+    }
+</script>
+</body>
+</html>

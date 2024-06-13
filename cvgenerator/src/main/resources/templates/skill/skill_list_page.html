@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Skills</title>
+    <div th:insert="fragments/fragments.html:: list_css"></div>
+
+</head>
+<body>
+<div class="container">
+    <div class="button-group">
+        <a th:href="@{/basic-info}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Back to Basic Info
+        </a>
+        <a th:href="@{~/}" class="btn btn-secondary">
+            <i class="fas fa-home"></i> Go to Home
+        </a>
+        <a th:href="@{~/view-all/skill-view/}+${basicInfoId}" class="btn btn-outline-secondary">
+            <i class="fas fa-eye"></i>view
+        </a>
+    </div>
+    <div style="text-align: center; margin: 20px 0;">
+        <h2 th:text="${fullName}"></h2>
+    </div>
+    <div th:each="skillDto, i : ${skillDtoList}" class="info-section">
+        <p><span class="info-label">Skill Type:</span><span th:text="${skillDto.getSkillType()}"></span></p>
+        <p><span class="info-label">Skill Name:</span><span th:text="${skillDto.getSkillName()}"></span></p>
+        <p><span class="info-label">Description:</span><span th:text="${skillDto.getSkillDescription()}"></span></p>
+
+        <div class="button-group">
+            <a th:href="@{~/skill-info/edit/}+${skillDto.getSkillId}" class="btn btn-outline-secondary">
+                <i class="fas fa-user-edit"></i> Edit
+            </a>
+            <a th:href="@{~/skill-info/delete-skill/}+${skillDto.getSkillId}" class="btn btn-outline-danger">
+                <i class="fas fa-trash"></i>Delete
+            </a>
+        </div>
+    </div>
+    <a th:href="@{~/skill-info/add-skill/}+${basicInfoId}">
+        <button class="btn btn-primary"> +  Skill</button>
+    </a>
+</div>
+<script type="text/javascript">
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this item? This action cannot be undone.");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Education Information</title>
+    <div th:insert="~{fragments/fragments.html:: form_CSS}"></div>
+    <script>
+        function toggleFields() {
+            const isRunningCheckbox = document.getElementById("isRunning");
+            const gradeField = document.getElementById("divisionOrGrade");
+            const toDateField = document.getElementById("toYearDate");
+            const disabledField = document.getElementById("fieldDisable");
+
+            toDateField.disabled = isRunningCheckbox.checked;
+            if (isRunningCheckbox.checked) {
+                gradeField.disabled = true;
+                toDateField.disabled = true;
+                gradeField.value = ""; // Clear the value of the grade field
+                toDateField.value = ""; // Clear the value of the toYearDate field
+                disabledField.style.display = 'none';
+            } else {
+                gradeField.disabled = false;
+                toDateField.disabled = false;
+                disabledField.style.display = 'flex';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            toggleFields();
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h3 class="topic">Education Information</h3>
+    <br>
+    <a th:href="@{|/education-info/id/${educationInformationDto.basicInformationId}|}" class="back-button">
+        <button class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i></button>
+    </a>
+    <form th:action="@{/education-info/save}" th:object="${educationInformationDto}" method="POST">
+        <p th:text="${message}"></p>
+        <div>
+            <input type="hidden" id="basicInformationId" th:field="*{basicInformationId}">
+            <input type="hidden" id="educationInformationId" th:field="*{id}">
+        </div>
+        <div class="form-group">
+            <label for="instituteName" class="form-label">Institute Name</label>
+            <input type="text" class="form-control" id="instituteName" th:field="*{instituteName}" required>
+            <p class="error-messages" th:text="${errorObject.instituteName}"></p>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="instituteAddress" class="form-label">Institute Address</label>
+                <input type="text" class="form-control" id="instituteAddress" th:field="*{instituteAddress}" required>
+                <p class="error-messages" th:text="${errorObject.instituteAddress}"></p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Level</label>
+                <select class="form-select" aria-label="Default select example" th:field="*{level}" required>
+                    <option  value="">-- select level --</option>
+                    <option th:each="level: ${levelList}" th:value="${level}" th:text="${level}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="levelDetail" class="form-label">Level Detail</label>
+                <input type="text" class="form-control" id="levelDetail" th:field="*{levelDetail}" required>
+                <p class="error-messages" th:text="${errorObject.levelDetail}"></p>
+            </div>
+        </div>
+        <div class="form-row">
+        </div>
+        <div class="form-group">
+            <label for="isRunning" class="form-label">Is Running</label>
+            <input type="checkbox" id="isRunning" onchange="toggleFields()" th:field="*{isRunning}">
+        </div>
+        <br>
+        <div class="form-row" id="fieldDisable">
+            <div class="form-group">
+                <label for="divisionOrGrade" class="form-label">Division or Grade</label>
+                <input type="text" class="form-control" id="divisionOrGrade" th:field="*{divisionOrGrade}">
+                <p class="error-messages" th:text="${errorObject.divisionOrGrade}"></p>
+            </div>
+            <div class="form-group">
+                <label for="toYearDate" class="form-label">To Year</label>
+                <input type="date" class="form-control" id="toYearDate" th:field="*{toYearDate}" required>
+                <p class="error-messages" th:text="${errorObject.toDate}"></p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="fromYearDate" class="form-label">From Year</label>
+                <input type="date" class="form-control" id="fromYearDate" th:field="*{fromYearDate}" required>
+                <p class="error-messages" th:text="${errorObject.fromYearDate}"></p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Education Type</label>
+                <select class="form-select" aria-label="Default select example" th:field="*{educationType}" required>
+                    <option value="">-- select education type --</option>
+                    <option th:each="educationType: ${educationTypeList}" th:value="${educationType}" th:text="${educationType}"></option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
